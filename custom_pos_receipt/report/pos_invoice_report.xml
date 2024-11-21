@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="custom_pos_invoice_report" model="ir.actions.report">
+        <field name="name">Custom POS Invoice</field>
+        <field name="model">pos.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">custom_pos_receipt.report_invoice_pos_custom</field>
+        <field name="report_file">custom_pos_receipt.report_invoice_pos_custom</field>
+        <field name="binding_model_id" ref="point_of_sale.model_pos_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

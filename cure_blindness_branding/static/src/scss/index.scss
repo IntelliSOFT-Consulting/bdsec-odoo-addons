@@ -1,0 +1,53 @@
+// Primary color
+$o-brand-primary: #617f7f !important;
+$o-brand-primary-text: #2e414f !important;
+
+body { 
+    font-family: 'Poppins' !important;
+}
+
+nav, .o_main_navbar { 
+    background: $o-brand-primary;
+}
+
+.btn-primary {
+    background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+}
+.btn-fill-odoo, .btn-odoo {
+    color: #FFFFFF;
+    background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+}
+.btn-secondary {
+    color: $o-brand-primary;
+}
+
+hr{
+    color: $o-brand-primary;
+}
+
+.o_kanban_renderer .oe_kanban_color_11:after {
+    background-color: $o-brand-primary;
+    outline: 1px solid $o-brand-primary;
+}
+
+.o_searchview_facet .o_searchview_facet_label{
+    background: $o-brand-primary;
+}
+
+.form-check-input{
+    background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+}
+a {
+    color: $o-brand-primary-text;
+}
+.btn-outline-primary {
+    color: $o-brand-primary;
+    border-color: $o-brand-primary;
+}
+
+.nav-link {
+    color: $o-brand-primary-text;
+}

@@ -1,26 +1,45 @@
 // Primary color
-$o-brand-primary: #617f7f !important;
-$o-brand-primary-text: #2e414f !important;
+$o-brand-primary: #284251 !important;
+$o-brand-primary-text: #284251 !important;
+$o-brand-btn: #88af28;
+$body-font-size: 14px;
+
 
 body { 
-    font-family: 'Poppins' !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: var(--body-font-size);
 }
 
-nav, .o_main_navbar { 
+.o_main_navbar { 
     background: $o-brand-primary;
+    border-bottom: 1px solid $o-brand-primary;
+    color: #FFFFFF !important;
 }
+.o_nav_entry {
+    color: #FFFFFF !important;
+}
+.o_navbar{
+    color: #FFFFFF !important;
+}
+
+
 
 .btn-primary {
-    background-color: $o-brand-primary;
-    border-color: $o-brand-primary;
+
+    background-color: $o-brand-btn;
+    border-color: $o-brand-btn;
 }
 .btn-fill-odoo, .btn-odoo {
     color: #FFFFFF;
-    background-color: $o-brand-primary;
-    border-color: $o-brand-primary;
+    background-color: $o-brand-btn;
+    border-color: $o-brand-btn;
 }
 .btn-secondary {
     color: $o-brand-primary;
+}
+.btn-outline-primary {
+    color: $o-brand-btn;
+    border-color: $o-brand-btn;
 }
 
 hr{
@@ -36,17 +55,12 @@ hr{
     background: $o-brand-primary;
 }
 
-.form-check-input{
+.form-check-input::after{
     background-color: $o-brand-primary;
     border-color: $o-brand-primary;
 }
-a {
-    color: $o-brand-primary-text;
-}
-.btn-outline-primary {
-    color: $o-brand-primary;
-    border-color: $o-brand-primary;
-}
+
+
 
 .nav-link {
     color: $o-brand-primary-text;

@@ -1,0 +1,33 @@
+<odoo>
+    <!-- Create a top-level menu item for Timesheet Import -->
+    <menuitem id="menu_timesheet_import_home"
+              name="Timesheet Import"
+              action="action_timesheet_import_wizard"
+              sequence="1"
+              groups="base.group_user"/>
+
+    <!-- Form view for the import wizard -->
+    <record id="view_timesheet_import_wizard_form" model="ir.ui.view">
+        <field name="name">timesheet.import.wizard.form</field>
+        <field name="model">timesheet.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Timesheet">
+                <group>
+                    <field name="file" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="import_timesheet" type="object" string="Import" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the import wizard form -->
+    <record id="action_timesheet_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Timesheet</field>
+        <field name="res_model">timesheet.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,140 +1,93 @@
 <odoo>
     <template id="report_invoice_pos_custom" inherit_id="account.report_invoice_document">
-        <xpath expr="//div[contains(@class, 'page')]" position="replace">
-            <div class="page" style="margin: 0; padding: 0;">
-                <style>
-					.invoice-row {
-					  display: flex;
-					  justify-content: space-between;
-					  align-items: flex-start;
-					  margin-bottom: 20px;
-					}
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="page" style="margin: 0; padding: 0;">
+                    <style>
+                        h1 {
+                            font-size: 20px;
+                            margin-bottom: 15px;
+                            font-weight: bold;
+                        }
 
-					.invoice-info-container {
-					  width: 100%;
-					  padding-right: 20px;
-					}
+                        .table {
+                            width: 100%;
+                            margin-top: 20px;
+                        }
 
-					.billed-to {
-					  width: 100%;
-					  text-align: right;
-					}
+                        .table th {
+                            background-color: #f8f9fa;
+                            border-bottom: 2px solid #dee2e6;
+                        }
 
+                        .table td, .table th {
+                            padding: 8px;
+                        }
 
-					.invoice-info-row {
-					  line-height: 1.5;
-					  margin-bottom: 3px;
-					}
+                        .pos-invoice-header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                    </style>
 
-					.invoice-info-row .label {
-					  display: inline-block;
-					  min-width: 100px;
-					}
-
-					.billed-to-content {
-					  text-align: right;
-					  line-height: 1.5;
-					}
-
-					h1 {
-					  font-size: 20px;
-					  margin-bottom: 15px;
-					  font-weight: bold;
-					}
-
-					.invoice-info-row {
-					  margin-bottom: 8px;
-					}
-
-					.label {
-					  font-weight: bold;
-					  margin-right: 5px;
-					}
-
-					.value {
-					  color: #555;
-					}
-
-					.table {
-					  width: 100%;
-					  margin-top: 20px;
-					}
-
-					.table th {
-					  background-color: #f8f9fa;
-					  border-bottom: 2px solid #dee2e6;
-					}
-
-					.table td,
-					.table th {
-					  padding: 8px;
-					}
-
-					/* Styling the header section */
-					.pos-invoice-header {
-					  text-align: center;
-					  margin-bottom: 20px;
-					}
-                </style>
-
-                <!-- Header -->
-                <section class="pos-invoice-header">
-                    <h2 t-if="o.company_id.logo" class="mt-0">
-                        <img t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo" />
-                    </h2>
-                </section>
-                <hr/>
+                    <section class="pos-invoice-header">
+                        <h2 t-if="o.company_id.logo" class="mt-0">
+                            <img t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 100px;" alt="Logo" />
+                        </h2>
+                    </section>
+                    <hr />
                 <section style="margin-bottom: 20px;">
-                    <!-- Invoice Number -->
                     <div style="margin-bottom: 15px;">
                         <h1 style="font-size: 20px; margin: 0; font-weight: bold;">
                             Invoice
-                            <span t-field="o.name"/>
+                            <span t-field="o.name" />
                         </h1>
                     </div>
-                   
-                    <div class="invoice-row">
-                        <!-- Left Column: Invoice Info -->
-                        <div class="invoice-info-container">
-                            <div class="invoice-info-row">
-                                <span class="label">Invoice Date:</span>
-                                <span class="value">
-                                    <span t-field="o.invoice_date" />
-                                </span>
-                            </div>
-                            <div class="invoice-info-row">
-                                <span class="label">Due Date:</span>
-                                <span class="value">
-                                    <span t-field="o.invoice_date_due" />
-                                </span>
-                            </div>
-                            <div class="invoice-info-row">
-                                <span class="label">Source:</span>
-                                <span class="value">
-                                    <span t-field="o.pos_order_ids[0].pos_reference" t-if="o.pos_order_ids" />
-                                </span>
-                            </div>
-                            <div class="invoice-info-row">
-                                <span class="label">Reference:</span>
-                                <span class="value">
-                                    <span t-field="o.invoice_origin" />
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Right Column: Billed To -->
-                        <div class="billed-to">
-                            <strong>Billed to:</strong>
-                            <br />
-                            <span t-field="o.partner_id.name" />
-                            <br />
-                            <span t-field="o.partner_id.street" />
-                            <br />
-                            <span t-if="o.partner_id.phone" t-field="o.partner_id.phone" />
-                        </div>
-                    </div>
+                    
+                    <table class="invoice-table" style="width: 100%; margin-bottom: 20px; border-collapse: collapse;">
+    <tr>
+        <td style="width: 50%; vertical-align: top;">
+            <table style="width: 100%; border-spacing: 0;">
+                <tr>
+                    <td style="font-weight: bold;">Invoice Date:</td>
+                    <td><span t-field="o.invoice_date" /></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Due Date:</td>
+                    <td><span t-field="o.invoice_date_due" /></td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Source:</td>
+                    <td>
+                        <span t-field="o.pos_order_ids[0].pos_reference" t-if="o.pos_order_ids" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Reference:</td>
+                    <td><span t-field="o.invoice_origin" /></td>
+                </tr>
+            </table>
+        </td>
+        <td style="width: 50%; vertical-align: top;">
+            <table style="width: 100%; border-spacing: 0;">
+                <tr>
+                    <td colspan="2" style="font-weight: bold;">Billed To:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span t-field="o.partner_id.name" /><br />
+                        <span t-field="o.partner_id.street" /><br />
+                        <span t-if="o.partner_id.city" t-field="o.partner_id.city" />, 
+                        <span t-if="o.partner_id.state_id" t-field="o.partner_id.state_id.name" /><br />
+                        <span t-if="o.partner_id.phone" t-field="o.partner_id.phone" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
                 </section>
                 <hr />
-                <!-- Invoice Lines -->
                 <table class="table table-sm pos-invoice-table">
                     <thead>
                         <tr>
@@ -188,13 +141,13 @@
                     </tfoot>
                 </table>
                 <hr />
-                <!-- Footer -->
                 <div class="footer text-center" style="margin-top: 20px;">
                     <p>Please use the following communication for your payment:
-                        <span t-field="o.name"/>
+                        <span t-field="o.name" />
                     </p>
                 </div>
-            </div>
+                </div>
+            </t>
         </xpath>
     </template>
 </odoo>

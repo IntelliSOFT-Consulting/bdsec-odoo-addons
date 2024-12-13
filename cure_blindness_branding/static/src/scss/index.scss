@@ -1,7 +1,8 @@
 // Primary color
 $o-brand-primary: #284251 !important;
-$o-brand-primary-text: #284251 !important;
+$o-brand-primary-text: #2e414f !important;
 $o-brand-btn: #88af28;
+$o-brand-btn-hover: #63860b;
 $body-font-size: 14px;
 
 
@@ -21,7 +22,9 @@ body {
 .o_navbar{
     color: #FFFFFF !important;
 }
-
+.pos-topheader{
+    background: $o-brand-primary;
+}
 
 
 .btn-primary {
@@ -39,6 +42,11 @@ body {
 }
 .btn-outline-primary {
     color: $o-brand-btn;
+    border-color: $o-brand-btn;
+}
+
+.btn-primary:hover{
+    background-color: $o-brand-btn-hover;
     border-color: $o-brand-btn;
 }
 

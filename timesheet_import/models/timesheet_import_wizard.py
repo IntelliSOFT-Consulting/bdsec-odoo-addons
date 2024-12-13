@@ -49,6 +49,7 @@ class TimesheetImportWizard(models.TransientModel):
                     
                     if len(row) < 4:
                         raise ValidationError(_('Error on line %d: Missing or incomplete data. Expected 4 fields but got %d.') % (index, len(row)))
+                    row = row[:4]
 
                     date_str, name, hours, task_name = row
 
@@ -90,7 +91,6 @@ class TimesheetImportWizard(models.TransientModel):
                 except Exception as e:
                     _logger.error("Error on line %d: %s", index, str(e))
                     raise ValidationError(_('Error on line %d: %s') % (index, str(e)))
-
 
         return {
             'type': 'ir.actions.client',

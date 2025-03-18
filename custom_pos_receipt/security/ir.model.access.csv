@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_optometrist_observation_admin,Access Optometrist Observation,model_optometrist_observation,,1,1,1,1
+access_optometrist_assessment_admin,Access Optometrist Assessment,model_optometrist_assessment,,1,1,1,1

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_optometrist_observation_tree" model="ir.ui.view">
+        <field name="name">optometrist.observation.tree</field>
+        <field name="model">optometrist.observation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="assessment_id"/>
+                <field name="concept_name"/>
+                <field name="data_type"/>
+                <field name="observation_uuid"/>
+                <field name="value"/>
+                <field name="observation_datetime"/>
+                <field name="voided"/>
+                <field name="inactive"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_optometrist_observation_form" model="ir.ui.view">
+        <field name="name">optometrist.observation.form</field>
+        <field name="model">optometrist.observation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="assessment_id"/>
+                        <field name="concept_uuid"/>
+                        <field name="concept_name"/>
+                        <field name="data_type"/>
+                        <field name="observation_uuid"/>
+                        <field name="value"/>
+                        <field name="observation_datetime"/>
+                        <field name="voided"/>
+                        <field name="inactive"/>
+                        <field name="comment"/>
+                        <field name="form_namespace"/>
+                        <field name="form_field_path"/>
+                        <field name="group_members"/>
+                        <field name="interpretation"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

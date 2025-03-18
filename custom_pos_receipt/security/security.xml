@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Define a security group for wallet management -->
+
+        <record id="group_assessment_user" model="res.groups">
+            <field name="name">Assessment User</field>
+            <field name="category_id" ref="base.module_category_sales_sales" />
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+
+        </record>
+
+        <record id="access_optometrist_observation" model="ir.model.access">
+            <field name="name">Assessment Observations</field>
+            <field name="model_id" ref="model_optometrist_observation" />
+            <field name="group_id" ref="group_assessment_user" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_unlink" eval="0" />
+        </record>
+
+        <record id="access_optometrist_assessment" model="ir.model.access">
+            <field name="name">optometrist Assessments</field>
+            <field name="model_id" ref="model_optometrist_assessment" />
+            <field name="group_id" ref="group_assessment_user" />
+            <field name="perm_read" eval="1" />
+            <field name="perm_write" eval="1" />
+            <field name="perm_create" eval="1" />
+            <field name="perm_unlink" eval="0" />
+        </record>
+
+    </data>
+</odoo>

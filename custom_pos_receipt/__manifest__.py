@@ -11,6 +11,10 @@
     'data': [
         'views/invoice_layout.xml',
         'report/pos_invoice_report.xml',
+        'views/optometrist_assessment.xml',
+        'views/optometrist_observation.xml',
+        'security/security.xml'
+        
     ],
     'assets': {
         # 'web.assets_backend': [

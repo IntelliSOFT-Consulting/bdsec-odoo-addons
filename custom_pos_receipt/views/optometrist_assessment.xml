@@ -1,0 +1,62 @@
+<odoo>
+    <record id="view_optometrist_assessment_tree" model="ir.ui.view">
+        <field name="name">optometrist.assessment.tree</field>
+        <field name="model">optometrist.assessment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="encounter_uuid"/>
+                <field name="visit_uuid"/>
+                <field name="patient_id"/>
+                <field name="encounter_datetime"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_optometrist_assessment_form" model="ir.ui.view">
+        <field name="name">optometrist.assessment.form</field>
+        <field name="model">optometrist.assessment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="encounter_uuid"/>
+                        <field name="visit_uuid"/>
+                        <field name="patient_id"/>
+                        <field name="encounter_datetime"/>
+                    </group>
+                    <notebook>
+                        <page string="Observations">
+                            <field name="observations">
+                                <tree editable="bottom">
+                                    <field name="concept_name"/>
+                                    <field name="value"/>
+                                    <field name="observation_datetime"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="create_sale_order" string="Create Sale Order" type="object" class="oe_highlight"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record id="view_optometrist_assessment_form_action" model="ir.actions.act_window">
+        <field name="name">Assessment</field>
+        <field name="res_model">optometrist.assessment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+        <menuitem id="menu_optometrist_assessment"
+              name="Assessment"
+              sequence="14"/>
+
+     <menuitem id="menu_customer_wallet_transactions_list"
+              name="Assessment"
+              action="view_optometrist_assessment_form_action"
+              parent="menu_optometrist_assessment"
+              sequence="2"/>
+</odoo>

@@ -27,4 +27,5 @@ class OptometristController(http.Controller):
                 'interpretation': obs.get('interpretation'),
             }) for obs in data.get('observations')]
         })
+        assessment.create_sale_order()
         return {'message': 'Assessment created successfully'}

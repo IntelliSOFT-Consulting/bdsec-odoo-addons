@@ -9,6 +9,7 @@
     'license': 'LGPL-3',
     'depends': ['point_of_sale', 'web'],
     'data': [
+        'security/security.xml',
         'views/invoice_layout.xml',
         'report/pos_invoice_report.xml',
     ],

@@ -39,6 +39,8 @@
                 <field name="encounter_datetime"/>
                 <field name="encounter_uuid"/>
                 <field name="visit_uuid"/>
+
+               
             </tree>
         </field>
     </record>
@@ -56,6 +58,14 @@
                         <field name="encounter_datetime"/>
                         <field name="encounter_uuid"/>
                         <field name="visit_uuid"/>
+                        <field name="sale_order"/>
+
+                        <field name="observations">
+                            <tree>
+                                <field name="concept_name"/>
+                                <field name="value"/>
+                            </tree>
+                        </field>
                         
                     </group>
                 </sheet>

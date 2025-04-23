@@ -8,18 +8,18 @@ _logger = logging.getLogger(__name__)
 
 class OptometristController(http.Controller):
 
-    @http.route('/api/optometrist/assessment', type='json', auth='none', methods=['POST'])
+    @http.route('/api/optometrist/assessment', type='http', auth='none', methods=['POST'], csrf=False)
     def create_optometrist_assessment(self, **kwargs):
         try:
             data = request.get_json_data()
             # _logger.info("Received data for optometrist assessment: %s", json.dumps(data))
 
 
-            if not data.get('observations'):
+            if not data.get('observations') or not data:
                 return Response(json.dumps({
-                    'error': 'Missing required field: '
+                    'error': 'Missing required fields',
+                    'status': 'error'
                 }), status=400, content_type='application/json')
-            
             
 
             assessment = http.request.env['optometrist.encounter'].sudo().create({
@@ -33,7 +33,7 @@ class OptometristController(http.Controller):
                     'concept_name': obs.get('concept', {}).get('name'),
                     'data_type': obs.get('concept', {}).get('dataType'),
                     'observation_uuid': obs.get('uuid'),
-                    'value': obs.get('value'),
+                    'value': obs.get('value', {}).get('name', {}).get('name') if isinstance(obs.get('value'), dict) else obs.get('value'),
                     # 'observation_datetime': obs.get('observationDateTime'),
                     'observation_datetime': datetime.fromtimestamp(int(obs.get('observationDateTime')) / 1000.0) if obs.get('observationDateTime') else None,
                     'voided': obs.get('voided'),
@@ -53,17 +53,20 @@ class OptometristController(http.Controller):
                 _logger.error("Error creating sale order: %s", str(e))
                 return Response(json.dumps({
                     'error': 'Assessment created but sale order failed',
-                    'details': str(e)
+                    'details': str(e),
+                    'status': 'error'
                 }), status=500, content_type='application/json')
 
             return Response(json.dumps({
                 'message': 'Assessment created successfully',
-                'id': assessment.id
+                'id': assessment.id,
+                'status': 'success'
             }), status=201, content_type='application/json')
 
         except Exception as e:
             _logger.error("Error creating optometrist assessment: %s", str(e), exc_info=True)
             return Response(json.dumps({
                 'error': 'Failed to create assessment',
-                'details': str(e)
+                'details': str(e),
+                'status':'error'
             }), status=500, content_type='application/json')

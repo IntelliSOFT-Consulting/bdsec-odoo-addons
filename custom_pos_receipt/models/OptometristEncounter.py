@@ -4,8 +4,8 @@ class OptometristEncounter(models.Model):
     _name = 'optometrist.encounter'
     _description = 'Optometrist Encounter'
 
-    encounter_uuid = fields.Char(string='Encounter UUID')
-    visit_uuid = fields.Char(string='Visit UUID')
+    encounter_uuid = fields.Char(string='Patient Encounter ID')
+    visit_uuid = fields.Char(string='Visit ID')
     patient_id = fields.Char(string='Patient ID')
     patient_name = fields.Char(string='Patient Name')
     encounter_datetime = fields.Datetime(string='Encounter Date Time')
@@ -41,14 +41,16 @@ class OptometristEncounter(models.Model):
             'company_id': company.id,
             'shop_id': shop.id,
         })
+        
 
         # Add observations as sale order lines
         for observation in self.observations:
-            product = Product.search([('name', '=', observation.concept_name)], limit=1)
+            product_name = "{}-{}".format(observation.concept_name, observation.value)
+            product = Product.search([('name', '=', product_name)], limit=1)
             if not product:
                 # Create the product if it doesn't exist
                 product = Product.create({
-                    'name': observation.concept_name,
+                    'name': product_name,
                     'type': 'service',
                     'list_price': 0.0,  # Default price if not specified
                 })
@@ -57,7 +59,7 @@ class OptometristEncounter(models.Model):
             SaleOrderLine.create({
                 'order_id': sale_order.id,
                 'product_id': product.id,
-                'name': product.name,
+                'name': product_name,
                 'product_uom_qty': 1,
                 'price_unit': product.list_price,
             })

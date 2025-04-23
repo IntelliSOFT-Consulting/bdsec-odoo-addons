@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Action for Optometrist Observation -->
+    <record id="action_optometrist_observation" model="ir.actions.act_window">
+        <field name="name">Optometrist Observations</field>
+        <field name="res_model">optometrist.observation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Optometrist Encounter -->
+    <record id="action_optometrist_encounter" model="ir.actions.act_window">
+        <field name="name">Optometrist Encounters</field>
+        <field name="res_model">optometrist.encounter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu root -->
+    <menuitem id="menu_optometrist_root" name="Optometry" sequence="10"/>
+
+    <!-- Submenu for Encounters -->
+    <menuitem id="menu_optometrist_encounter" name="Encounters"
+              parent="menu_optometrist_root"
+              action="action_optometrist_encounter" sequence="20"/>
+
+    <!-- Submenu for Observations -->
+    <menuitem id="menu_optometrist_observation" name="Observations"
+              parent="menu_optometrist_root"
+              action="action_optometrist_observation" sequence="30"/>
+
+    <!-- Tree View: Optometrist Encounter -->
+    <record id="view_tree_optometrist_encounter" model="ir.ui.view">
+        <field name="name">optometrist.encounter.tree</field>
+        <field name="model">optometrist.encounter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_name"/>
+                <field name="patient_id"/>
+                <field name="encounter_datetime"/>
+                <field name="encounter_uuid"/>
+                <field name="visit_uuid"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Optometrist Encounter -->
+    <record id="view_form_optometrist_encounter" model="ir.ui.view">
+        <field name="name">optometrist.encounter.form</field>
+        <field name="model">optometrist.encounter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="patient_name"/>
+                        <field name="patient_id"/>
+                        <field name="encounter_datetime"/>
+                        <field name="encounter_uuid"/>
+                        <field name="visit_uuid"/>
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View: Optometrist Observation -->
+    <record id="view_tree_optometrist_observation" model="ir.ui.view">
+        <field name="name">optometrist.observation.tree</field>
+        <field name="model">optometrist.observation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="assessment_id"/>
+                <field name="concept_name"/>
+                <field name="value"/>
+                <field name="observation_datetime"/>
+                <field name="comment"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View: Optometrist Observation -->
+    <record id="view_form_optometrist_observation" model="ir.ui.view">
+        <field name="name">optometrist.observation.form</field>
+        <field name="model">optometrist.observation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="assessment_id"/>
+                        <field name="concept_uuid"/>
+                        <field name="concept_name"/>
+                        <field name="data_type"/>
+                        <field name="observation_uuid"/>
+                        <field name="value"/>
+                        <field name="observation_datetime"/>
+                        <field name="voided"/>
+                        <field name="inactive"/>
+                        <field name="comment"/>
+                        <field name="form_namespace"/>
+                        <field name="form_field_path"/>
+                        <field name="group_members"/>
+                        <field name="interpretation"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

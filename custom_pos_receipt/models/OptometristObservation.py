@@ -5,7 +5,7 @@ class OptometristObservation(models.Model):
     _name = 'optometrist.observation'
     _description = 'Optometrist Observation'
 
-    assessment_id = fields.Many2one('optometrist.assessment', string='Optometrist Assessment')
+    assessment_id = fields.Many2one('optometrist.encounter', string='Optometrist Assessment')
     concept_uuid = fields.Char(string='Concept UUID')
     concept_name = fields.Char(string='Concept Name')
     data_type = fields.Char(string='Data Type')

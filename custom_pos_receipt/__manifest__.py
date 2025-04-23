@@ -11,6 +11,7 @@
     'data': [
         'security/security.xml',
         'views/invoice_layout.xml',
+        'views/optometrist_views.xml',
         'report/pos_invoice_report.xml',
     ],
     'assets': {

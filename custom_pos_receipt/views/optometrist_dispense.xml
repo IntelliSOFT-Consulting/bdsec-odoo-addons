@@ -1,0 +1,71 @@
+<odoo>
+    <record id="view_eyewear_product_form" model="ir.ui.view">
+        <field name="name">optometrist.dispense.form</field>
+        <field name="model">optometrist.dispense</field>
+        <field name="arch" type="xml">
+            <form string="Eyewear Product Information">
+                <group name="frame_info" string="Frame Information">
+                    <field name="brand"/>
+                    <field name="model"/>
+                    <field name="eye_size"/>
+                    <field name="bridge_size"/>
+                    <field name="temple_length"/>
+                    <field name="frame_material"/>
+                    <field name="frame_mounting"/>
+                    <field name="patient_buy"/>
+                    <field name="buy_type" attrs="{'invisible': [('patient_buy', '!=', 'yes')]}"/>
+                    <field name="power" attrs="{'invisible': [('buy_type', 'not in', ['readymade', 'ready_to_clip'])]}"/>
+                    <field name="refusal_reason" attrs="{'invisible': [('patient_buy', '!=', 'no')]}"/>
+                </group>
+
+                <group name="payment">
+                    <field name="frame_price"/>
+                    <field name="lens_price"/>
+                    <field name="total_price"/>
+                    <field name="initial_payment"/>
+                    <field name="payment_method"/>
+                    <field name="insurance_provider"/>
+                    <field name="coverage_details"/>
+                    <field name="out_of_pocket"/>
+                </group>
+
+                <group string="Fitting Measurements">
+                    <field name="bifocal_segment_height"/>
+                    <field name="progressive_height"/>
+                    <field name="pupillary_height"/>
+                </group>
+
+                <group string="Order Details">
+                    <field name="order_date"/>
+                    <field name="order_number"/>
+                    <field name="available_in_stock"/>
+                    <field name="delivery_date"/>
+                    <field name="adjustment_made"/>
+                    <field name="adjustment_note" attrs="{'invisible': [('adjustment_made', '=', False)]}"/>
+                </group>
+
+                <group string="Glazing">
+                    <field name="quality_check"/>
+                    <field name="issues_noted"/>
+                    <field name="issue_type" attrs="{'invisible': [('issues_noted', '=', False)]}"/>
+                    <field name="issue_other" attrs="{'invisible': [('issue_type', '!=', 'other')]}"/>
+                    <field name="resolving_done"/>
+                </group>
+
+                <group string="Collection">
+                    <field name="care_instructions"/>
+                    <field name="warranties"/>
+                    <field name="return_policy"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="eyewear_product_action" model="ir.actions.act_window">
+        <field name="name">Eyewear Dispense</field>
+        <field name="res_model">optometrist.dispense</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    
+</odoo>

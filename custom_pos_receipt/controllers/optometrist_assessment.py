@@ -33,8 +33,10 @@ class OptometristController(http.Controller):
                     'concept_name': obs.get('concept', {}).get('name'),
                     'data_type': obs.get('concept', {}).get('dataType'),
                     'observation_uuid': obs.get('uuid'),
-                    'value': obs.get('value', {}).get('name', {}).get('name') if isinstance(obs.get('value'), dict) else obs.get('value'),
-                    # 'observation_datetime': obs.get('observationDateTime'),
+                    'value': (
+                        obs.get('valueAsString') or
+                        (obs.get('value', {}).get('name') if isinstance(obs.get('value'), dict) else obs.get('value'))
+                    ),
                     'observation_datetime': datetime.fromtimestamp(int(obs.get('observationDateTime')) / 1000.0) if obs.get('observationDateTime') else None,
                     'voided': obs.get('voided'),
                     'inactive': obs.get('inactive'),
@@ -43,7 +45,8 @@ class OptometristController(http.Controller):
                     'form_field_path': obs.get('formFieldPath'),
                     'group_members': obs.get('groupMembers'),
                     'interpretation': obs.get('interpretation'),
-                }) for obs in data.get('observations')]
+                }) for obs in data.get('observations', [])]
+
             })
 
             # Optional: handle logic that might also throw errors

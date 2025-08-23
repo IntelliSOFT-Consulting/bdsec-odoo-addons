@@ -1,0 +1,67 @@
+// Primary color
+$o-brand-primary: #284251 !important;
+$o-brand-primary-text: #284251 !important;
+$o-brand-btn: #88af28;
+$body-font-size: 14px;
+
+
+body { 
+    font-family: 'Poppins', sans-serif !important;
+    font-size: var(--body-font-size);
+}
+
+.o_main_navbar { 
+    background: $o-brand-primary;
+    border-bottom: 1px solid $o-brand-primary;
+    color: #FFFFFF !important;
+}
+.o_nav_entry {
+    color: #FFFFFF !important;
+}
+.o_navbar{
+    color: #FFFFFF !important;
+}
+
+
+
+.btn-primary {
+
+    background-color: $o-brand-btn;
+    border-color: $o-brand-btn;
+}
+.btn-fill-odoo, .btn-odoo {
+    color: #FFFFFF;
+    background-color: $o-brand-btn;
+    border-color: $o-brand-btn;
+}
+.btn-secondary {
+    color: $o-brand-primary;
+}
+.btn-outline-primary {
+    color: $o-brand-btn;
+    border-color: $o-brand-btn;
+}
+
+hr{
+    color: $o-brand-primary;
+}
+
+.o_kanban_renderer .oe_kanban_color_11:after {
+    background-color: $o-brand-primary;
+    outline: 1px solid $o-brand-primary;
+}
+
+.o_searchview_facet .o_searchview_facet_label{
+    background: $o-brand-primary;
+}
+
+.form-check-input::after{
+    background-color: $o-brand-primary;
+    border-color: $o-brand-primary;
+}
+
+
+
+.nav-link {
+    color: $o-brand-primary-text;
+}
